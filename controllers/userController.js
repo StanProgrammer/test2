@@ -19,7 +19,8 @@ exports.createUser = async (req, res, next) => {
     res.status(201).json({ message: 'Successfully Created', token: token, userId: result.id })
 
   } catch (err) {
-    return res.status(400).send();
+    console.log(err);
+    // return res.status(400).send();
   }
 }
 exports.generateAccessToken=(id, name,email, isPremiumUser) => {

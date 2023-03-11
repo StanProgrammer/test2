@@ -23,7 +23,7 @@ myForm.addEventListener('submit',async (e)=>{
         alert(user1.data.message)
         window.location.href = "http://18.118.166.28:3000/loginPage";
     }catch(error){
-
+          console.log(error);
           if(confirm('User already exists')){
             window.location.reload()
           }
