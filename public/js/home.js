@@ -16,7 +16,7 @@ function onSubmit(e){
     
 
     if(editingExpenseId === 0){
-        axios.post('http://localhost:3000/home/expense', expenseObj, { headers: {'Authorization': token} })
+        axios.post('http://18.118.166.28/home/expense', expenseObj, { headers: {'Authorization': token} })
         .then((response) => {
             addNewLineElement(response.data)
         }).catch((err) => {
@@ -61,7 +61,7 @@ if (document.readyState == "loading" ){
     const isAdmin = decodeToken.isPremiumUser;
     if(isAdmin){enablePremium()}
 
-    // axios.get('http://localhost:3000/home/show', { headers: {'Authorization': token} } )
+    // axios.get('http://18.118.166.28/home/show', { headers: {'Authorization': token} } )
     axios.get(`/home/show/${currentPage}`,{params: {perpage}, headers: {'Authorization': token} } )
         .then((result) => {
             result.data.data.forEach(element => {
@@ -112,7 +112,7 @@ function addNewLineElement(expenseDetails){
     delBtn.value='delete';
     delBtn.addEventListener('click', ()=> {
         if(confirm('Are you sure?')){
-        axios.get(`http://localhost:3000/home/delete/${id}`, { headers: {'Authorization': token} })
+        axios.get(`http://18.118.166.28/home/delete/${id}`, { headers: {'Authorization': token} })
         li.remove();
         }
     });
@@ -138,14 +138,14 @@ function addNewLineElement(expenseDetails){
 }
 
 document.getElementById('premium').onclick = async function (e) {
-    const response  = await axios.get('http://localhost:3000/purchase/premium-membership', { headers: {"Authorization" : token} });
+    const response  = await axios.get('http://18.118.166.28/purchase/premium-membership', { headers: {"Authorization" : token} });
     
     var options =
     {
      "key": response.data.key_id,
      "order_id": response.data.order.id,
      "handler": async function (response) {
-        const result = await axios.post("http://localhost:3000/purchase/update-transaction-status", {
+        const result = await axios.post("http://18.118.166.28/purchase/update-transaction-status", {
             order_id: options.order_id, payment_id: response.razorpay_payment_id
         }, { headers: { "authorization": token } });
 
@@ -161,7 +161,7 @@ document.getElementById('premium').onclick = async function (e) {
     e.preventDefault();
     
     rzrp1.on("payment.failed", () => {
-        axios.post("http://localhost:3000/purchase/update-transaction-status", { order_id: response.data.order.id }, { headers: { "authorization": token } })
+        axios.post("http://18.118.166.28/purchase/update-transaction-status", { order_id: response.data.order.id }, { headers: { "authorization": token } })
         alert("something went wrong");
         rzrp1.close()
     })
@@ -172,7 +172,7 @@ let leaderboardElements = [];
 let leaderboardList = document.getElementById('leaderboard-list');
 let leaderboardBtn = document.getElementById('leaderboard-btn');
 
-axios.get("http://localhost:3000/premium/show-leaderboard", { headers: { "authorization": token } })
+axios.get("http://18.118.166.28/premium/show-leaderboard", { headers: { "authorization": token } })
     .then(res => {
         for (let i = 0; i < res.data.length; i++) {
             const li = document.createElement("li");
@@ -210,7 +210,7 @@ let reportList = document.getElementById('report-list');
 let listno = 0;
 let reportDisplayed = false;
 
-    axios.get('http://localhost:3000/getAllUrl',{headers: {'Authorization' : token}})
+    axios.get('http://18.118.166.28/getAllUrl',{headers: {'Authorization' : token}})
     .then((res) => {
         if(res.status === 200){
             showUrls(res.data)
@@ -319,7 +319,7 @@ async function getPageExpenses(page){
 
     const token = localStorage.getItem('token');
 
-    let response = await axios.get(`http://localhost:3000/home/show/${page}`,{params:{perpage},headers: { "Authorization": token}} );
+    let response = await axios.get(`http://18.118.166.28/home/show/${page}`,{params:{perpage},headers: { "Authorization": token}} );
     if(response.status === 200){
         tracker.innerHTML = ''
         for(let i=0;i<response.data.data.length;i++){

@@ -13,7 +13,7 @@ myForm.addEventListener('submit',async (e)=>{
     const password=document.getElementById('password')
     e.preventDefault()
     try{
-        const user1=await axios.post('http://localhost:3000/login',{
+        const user1=await axios.post('http://18.118.166.28/login',{
             name:name.value,
             email:email.value,
             phone:phone.value,
@@ -21,7 +21,7 @@ myForm.addEventListener('submit',async (e)=>{
         })
         
         alert(user1.data.message)
-        window.location.href = "http://localhost:3000/loginPage";
+        window.location.href = "http://18.118.166.28/loginPage";
     }catch(error){
 
           if(confirm('User already exists')){
@@ -33,7 +33,7 @@ myForm.addEventListener('submit',async (e)=>{
 })
 loginbtn.addEventListener('click',async()=>{
   try{
-    window.location.href = "http://localhost:3000/loginPage";
+    window.location.href = "http://18.118.166.28/loginPage";
   }
   catch(err){
     console.log(err);
