@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/users');
-const SECRET_KEY = 'ATIBAPI'
+const SECRET_KEY = process.env.SECRET_KEY
 exports.auth = (req, res, next) => {
     try {
         const token = req.header('Authorization');

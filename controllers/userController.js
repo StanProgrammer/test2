@@ -4,7 +4,7 @@ const User = require('../models/users')
 const bcrypt = require('bcrypt')
 const session = require('./sessionController')
 const jwt = require('jsonwebtoken')
-const SECRET_KEY = 'ATIBAPI'
+const SECRET_KEY = process.env.SECRET_KEY
 exports.createUser = async (req, res, next) => {
   try {
     const name = req.body.name

@@ -32,6 +32,7 @@ const app = express();
 app.use(
   helmet({
     contentSecurityPolicy: false,
+    
   })
 )
 app.use(cors());
