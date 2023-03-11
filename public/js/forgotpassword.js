@@ -6,7 +6,7 @@ forgot.addEventListener('submit', (e)=>{
 
     forgotObject = {email: email.value}
 
-    axios.post('http://18.118.166.28/password/forgotpassword',forgotObject)
+    axios.post('http://18.118.166.28:3000/password/forgotpassword',forgotObject)
         .then((response) => {
             alert(response.data.message);
         }).catch((err) => {

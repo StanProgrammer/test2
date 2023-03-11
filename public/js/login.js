@@ -5,7 +5,7 @@
 	myform.addEventListener('submit',async (e)=>{
 		e.preventDefault()
 		try{
-		const user1=await axios.post('http://18.118.166.28/check',{
+		const user1=await axios.post('http://18.118.166.28:3000/check',{
                 email:email.value,
                 password:password.value
         })
@@ -13,7 +13,7 @@
 		const token = user1.data.token
 		localStorage.setItem('token',token);
 		if(user1.status===200){
-			window.location.href = "http://18.118.166.28/home"
+			window.location.href = "http://18.118.166.28:3000/home"
 		}
 	}
 	
