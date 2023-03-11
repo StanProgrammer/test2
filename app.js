@@ -45,6 +45,8 @@ app.use('/user', userRoutes);
 app.use('/purchase',purchaseRoutes)
 app.use('/premium', premiumRoutes);
 app.use('/password', forgotpasswordRoutes);
+
+
 User.hasMany(Expense)
 Expense.belongsTo(User)
 
